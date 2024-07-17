@@ -9,7 +9,7 @@
     
     <header>
         <div class="container">
-            <h1> Analiza Web Pristupačnosti za osobe s invaliditetom </h1>
+            <h1 id="glavniNaslov"> Analiza Web Pristupačnosti za osobe s invaliditetom </h1>
             <nav>
                 <ul>
                     <li><a href="#about">O nama</a></li>
@@ -51,6 +51,27 @@
             <p>&copy; 2024 Analiza Web Pristupačnosti. Sva prava pridržana.</p>
             </div>
     </footer>
+<select id="jezik">
+    <option value="" selected> "" </option>
+<option value="crnogorski"> crnogorski </option>
+<option value="engleski"> engleski </option>
+</select>  
+<script> 
+let jezik = document.getElementById("jezik");
+let glavniNaslov = document.getElementById("glavniNaslov");
+jezik.addEventListener("change", izmjenaJezika);
+function izmjenaJezika(){
+let odabraniJezik = jezik.value;
+if(odabraniJezik ===  "crnogorski"){
+ glavniNaslov.textContent = "Analiza pristupačnosti sajta";
+}else if(odabraniJezik === "engleski"){
+    glavniNaslov.textContent = "Axessibility WEB site";
+}
+}
+
+ 
+  
+    </script>
 
 </body>
 </html>
