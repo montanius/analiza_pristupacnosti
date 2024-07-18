@@ -52,25 +52,39 @@
             </div>
     </footer>
 <select id="jezik">
-    <option value="" selected> "" </option>
 <option value="crnogorski"> crnogorski </option>
 <option value="engleski"> engleski </option>
 </select>  
+
 <script> 
 let jezik = document.getElementById("jezik");
 let glavniNaslov = document.getElementById("glavniNaslov");
-jezik.addEventListener("change", izmjenaJezika);
-function izmjenaJezika(){
-let odabraniJezik = jezik.value;
-if(odabraniJezik ===  "crnogorski"){
+
+function postaviNaslov(odabraniJezik){
+if(odabraniJezik === "crnogorski"){
  glavniNaslov.textContent = "Analiza pristupačnosti sajta";
-}else if(odabraniJezik === "engleski"){
+}else{
     glavniNaslov.textContent = "Axessibility WEB site";
 }
 }
 
- 
-  
+function izmjenaJezika(){
+let odabraniJezik = jezik.value;
+localStorage.setItem("poslednjiOdabraniJezik", odabraniJezik);
+postaviNaslov(odabraniJezik);
+} 
+
+window.addEventListener("load", function(){
+let poslednjiOdabraniJezik = localStorage.getItem("poslednjiOdabraniJezik");
+if(poslednjiOdabraniJezik){
+jezik.value = poslednjiOdabraniJezik;
+}
+postaviNaslov(poslednjiOdabraniJezik);
+});
+
+
+jezik.addEventListener("change", izmjenaJezika);
+
     </script>
 
 </body>
