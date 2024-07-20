@@ -44,13 +44,59 @@
                 <!-- Kontakt informacije -->
             </div>
         </section>
+            
+        <div class="container">
+            <h2> Odabir jezika </h2>
+                <select id="jezik">
+            <option value="crnogorski"> crnogorski </option>
+            <option value="engleski"> engleski </option>
+            </select>  
+            </div><div></div>
+        </div>
+    
+
     </main>
+
 
     <footer>
         <div class="container">
             <p>&copy; 2024 Analiza Web Pristupačnosti. Sva prava pridržana.</p>
             </div>
     </footer>
+<<<<<<< Updated upstream
+=======
+
+<script> 
+let jezik = document.getElementById("jezik");
+let glavniNaslov = document.getElementById("glavniNaslov");
+
+function postaviNaslov(odabraniJezik){
+if(odabraniJezik === "crnogorski"){
+ glavniNaslov.textContent = "Analiza pristupačnosti sajta";
+}else{
+    glavniNaslov.textContent = "Axessibility WEB site";
+}
+}
+
+function izmjenaJezika(){
+let odabraniJezik = jezik.value;
+localStorage.setItem("poslednjiOdabraniJezik", odabraniJezik);
+postaviNaslov(odabraniJezik);
+} 
+
+window.addEventListener("load", function(){
+let poslednjiOdabraniJezik = localStorage.getItem("poslednjiOdabraniJezik");
+if(poslednjiOdabraniJezik){
+jezik.value = poslednjiOdabraniJezik;
+}
+postaviNaslov(poslednjiOdabraniJezik);
+});
+
+
+jezik.addEventListener("change", izmjenaJezika);
+
+    </script>
+>>>>>>> Stashed changes
 
 </body>
 </html>
