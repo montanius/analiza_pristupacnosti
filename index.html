@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Analiza WEB pristupačnosti</title>
+    <style>
+.greska {
+color: red;
+}    </style>
 </head>
 <body>
     
     <header>
         <div class="container">
-            <h1> Analiza Web Pristupačnosti za osobe s invaliditetom </h1>
+            <h1 id="glavniNaslov"> Analiza Web Pristupačnosti za osobe s invaliditetom </h1>
             <nav>
                 <ul>
                     <li><a href="#about">O nama</a></li>
@@ -35,6 +39,23 @@
                 <p>Ovdje su naše usluge koje pružamo za analizu web pristupačnosti:</p>
                 <!-- Popis usluga -->
             </div>
+
+            <h3> Prijavi problem sa pristupačnošću </h3>
+<form id="formaPrijava">
+    <label for="ime"> Ime </label>
+    <input type="text" name="ime" id="ime" maxlength="100" required><br>
+    <p class="greska" id="greskaIme" style="display: none;"> </p>
+    <label for="mail"> Email </label>
+<input type="email" name="mail" id="mail" required><br>
+<label for="url">  WEB site </label>
+<input type="url" name="url" id="url" required><br>
+<label for="problem"> Opis problema </label>
+<input type="text" name="problem" id="problem" required><br>
+<label for="file"> Dodaj file </label>
+<input type="file" name="file" id="file"><br>
+<input type="submit" id="posalji" value="Prijavi problem">
+</form>
+<p id="uspjesnaPrijava" style="display: none;">  </p>
         </section>
 
         <section id="contact">
@@ -44,7 +65,7 @@
                 <!-- Kontakt informacije -->
             </div>
         </section>
-            
+
         <div class="container">
             <h2> Odabir jezika </h2>
                 <select id="jezik">
@@ -53,18 +74,13 @@
             </select>  
             </div><div></div>
         </div>
-    
-
-    </main>
-
+            </main>
 
     <footer>
         <div class="container">
             <p>&copy; 2024 Analiza Web Pristupačnosti. Sva prava pridržana.</p>
             </div>
     </footer>
-<<<<<<< Updated upstream
-=======
 
 <script> 
 let jezik = document.getElementById("jezik");
@@ -91,12 +107,30 @@ jezik.value = poslednjiOdabraniJezik;
 }
 postaviNaslov(poslednjiOdabraniJezik);
 });
-
-
 jezik.addEventListener("change", izmjenaJezika);
 
+
+let uspjesnaPrijava = document.getElementById("uspjesnaPrijava");
+let greskaIme = document.getElementById("greskaIme");
+let posalji = document.getElementById("posalji");
+            posalji.addEventListener("click", function(event){
+                event.preventDefault();
+                let formaPrijava = document.getElementById("formaPrijava");
+                let inputIme = document.getElementById("ime").value;
+let regexIme = /^[a-zA-Z]+$/;
+if(!regexIme.test(inputIme)){
+    greskaIme.textContent = "Unijeli ste nedozvoljene  znakove. Dozvoljena su samo mala i velika slova.";
+    greskaIme.style.display = "block";
+    greskaIme.classList.add("greska");
+}
+else {
+formaPrijava.style.display = "none";
+uspjesnaPrijava.textContent = "Uspješno poslata forma. Hvala na prijavi.";
+uspjesnaPrijava.style.display = "block";
+}
+ });
+
     </script>
->>>>>>> Stashed changes
 
 </body>
 </html>
