@@ -10,7 +10,7 @@ color: red;
 }    </style>
 </head>
 <body>
-    
+    <!-- > LUKA: Moraćemo da prevedemo cijeli sajt. Luka će obezbijediti prevode, a Goran će implementirati logiku -->
     <header>
         <div class="container">
             <h1 id="glavniNaslov"> Analiza Web Pristupačnosti za osobe s invaliditetom </h1>
@@ -99,7 +99,7 @@ let odabraniJezik = jezik.value;
 localStorage.setItem("poslednjiOdabraniJezik", odabraniJezik);
 postaviNaslov(odabraniJezik);
 } 
-
+// LUKA: window.addEventListener("load", ...) nije potreban jer je skripta na kraju HTML dokumenta
 window.addEventListener("load", function(){
 let poslednjiOdabraniJezik = localStorage.getItem("poslednjiOdabraniJezik");
 if(poslednjiOdabraniJezik){
@@ -115,6 +115,7 @@ let greskaIme = document.getElementById("greskaIme");
 let posalji = document.getElementById("posalji");
             posalji.addEventListener("click", function(event){
                 event.preventDefault();
+                // LUKA: Svi elementi koji se nalaze na web stranici mogu se dohvatiti pomoću document.getElementById na početku skripte
                 let formaPrijava = document.getElementById("formaPrijava");
                 let inputIme = document.getElementById("ime").value;
 let regexIme = /^[a-zA-Z]+$/;
