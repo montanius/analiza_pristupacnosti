@@ -91,13 +91,23 @@ let greskaIme = document.getElementById("greskaIme");
 let jezik = document.getElementById("jezik");
 let glavniNaslov = document.getElementById("glavniNaslov");
 
-function postaviNaslov(odabraniJezik){
+function postaviJezik(odabraniJezik){
 if(odabraniJezik === "crnogorski"){
- glavniNaslov.textContent = "Analiza pristupačnosti sajta";
+    fetch("cg.json").then((odgovor) => odgovor.json()) .then((prevodi) => { podesiPrevode( prevodi  ); });
 }else{
-    glavniNaslov.textContent = "Axessibility WEB site";
+    fetch("en.json").then((odgovor) => odgovor.json()) .then((prevodi) => { podesiPrevode( prevodi  ); });
 }
 }
+
+
+function podesiPrevode(prevode){
+let idNizElemenataZaPrevod = ["glavniNaslov"];
+idNizElemenataZaPrevod.forEach(id => document.getElementById(id).textContent = prevode[id])
+
+}
+
+
+
 
 function izmjenaJezika(){
 let odabraniJezik = jezik.value;
@@ -132,6 +142,7 @@ uspjesnaPrijava.textContent = "Uspješno poslata forma. Hvala na prijavi.";
 uspjesnaPrijava.style.display = "block";
 }
  });
+
 
     </script>
 
