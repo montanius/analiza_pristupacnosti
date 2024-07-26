@@ -1,5 +1,5 @@
         <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@ color: red;
     <!-- > LUKA: Moraćemo da prevedemo cijeli sajt. Luka će obezbijediti prevode, a Goran će implementirati logiku -->
     <header>
         <div class="container">
-            <h1 id="glavniNaslov"> Analiza Web Pristupačnosti za osobe s invaliditetom </h1>
+            <h1 id="glavniNaslov" role="alert"> Analiza Web Pristupačnosti za osobe s invaliditetom </h1>
             <nav>
                 <ul>
                     <li><a href="#about">O nama</a></li>
@@ -43,7 +43,7 @@ color: red;
             <h3> Prijavi problem sa pristupačnošću </h3>
 <form id="formaPrijava">
     <label for="ime"> Ime </label>
-    <input type="text" name="ime" id="ime" maxlength="100" required><br>
+    <input type="text" name="ime" id="ime" minlength="1" maxlength="100" pattern="^[a-zA-Z]+$" required><br>
     <p class="greska" id="greskaIme" style="display: none;"> </p>
     <label for="mail"> Email </label>
 <input type="email" name="mail" id="mail" required><br>
@@ -55,7 +55,7 @@ color: red;
 <input type="file" name="file" id="file"><br>
 <input type="submit" id="posalji" value="Prijavi problem">
 </form>
-<p id="uspjesnaPrijava" style="display: none;">  </p>
+<p id="uspjesnaPrijava" style="display: none;" role="alert">  </p>
         </section>
 
         <section id="contact">
@@ -83,6 +83,11 @@ color: red;
     </footer>
 
 <script> 
+let inputIme = document.getElementById("ime");
+let posalji = document.getElementById("posalji");
+let formaPrijava = document.getElementById("formaPrijava");
+let uspjesnaPrijava = document.getElementById("uspjesnaPrijava");
+let greskaIme = document.getElementById("greskaIme");
 let jezik = document.getElementById("jezik");
 let glavniNaslov = document.getElementById("glavniNaslov");
 
@@ -100,26 +105,23 @@ localStorage.setItem("poslednjiOdabraniJezik", odabraniJezik);
 postaviNaslov(odabraniJezik);
 } 
 // LUKA: window.addEventListener("load", ...) nije potreban jer je skripta na kraju HTML dokumenta
-window.addEventListener("load", function(){
+
 let poslednjiOdabraniJezik = localStorage.getItem("poslednjiOdabraniJezik");
 if(poslednjiOdabraniJezik){
 jezik.value = poslednjiOdabraniJezik;
 }
 postaviNaslov(poslednjiOdabraniJezik);
-});
+
 jezik.addEventListener("change", izmjenaJezika);
 
 
-let uspjesnaPrijava = document.getElementById("uspjesnaPrijava");
-let greskaIme = document.getElementById("greskaIme");
-let posalji = document.getElementById("posalji");
-            posalji.addEventListener("click", function(event){
+            formaPrijava.addEventListener("submit", function(event){
                 event.preventDefault();
-                // LUKA: Svi elementi koji se nalaze na web stranici mogu se dohvatiti pomoću document.getElementById na početku skripte
-                let formaPrijava = document.getElementById("formaPrijava");
-                let inputIme = document.getElementById("ime").value;
+                let inputImeVrijednost = inputIme.value;                
+                
+                
 let regexIme = /^[a-zA-Z]+$/;
-if(!regexIme.test(inputIme)){
+if(!regexIme.test(inputImeVrijednost)){
     greskaIme.textContent = "Unijeli ste nedozvoljene  znakove. Dozvoljena su samo mala i velika slova.";
     greskaIme.style.display = "block";
     greskaIme.classList.add("greska");
