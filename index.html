@@ -1,4 +1,4 @@
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="sr">
 <head>
     <meta charset="UTF-8">
@@ -125,20 +125,29 @@ postaviJezik(poslednjiOdabraniJezik);
 
 jezik.addEventListener("change", izmjenaJezika);
 
-            formaPrijava.addEventListener("submit", function(event){
-                event.preventDefault();
-                let inputImeVrijednost = inputIme.value;
-let regexIme = /^[a-zA-Z]+$/;
-if(!regexIme.test(inputImeVrijednost)){
+function validirajIme() {
+    let inputImeVrijednost = inputIme.value;
+    let regexIme = /^[a-zA-Z]+$/;
+    if (!regexIme.test(inputImeVrijednost)){
         formaPrijavaInputImeGreska.style.display = "block";
-    formaPrijavaInputImeGreska.classList.add("greska");
+        return false;
+    } else {
+        formaPrijavaInputImeGreska.style.display = "none";
+        return true;
+    }
 }
-else {
-formaPrijava.style.display = "none";
-uspjesnaPrijava.style.display = "block";
-}
- });
 
+            
+
+inputIme.addEventListener("input", validirajIme);
+
+formaPrijava.addEventListener("submit", function(event){
+    event.preventDefault();
+    if (validirajIme()) {
+        formaPrijava.style.display = "none";
+                uspjesnaPrijava.style.display = "block";
+    }
+});
 
      </script>
 
