@@ -1,2 +1,25 @@
-{"glavniNaslov" : "Pristupačnost  WEB sajta"
+{
+"naslovDokumenta" : "Analiza WEB pristupačnosti",
+"glavniNaslov" : "Analiza Web Pristupačnosti za osobe s invaliditetom",
+"navigacijaStavkaJedan" : "O nama",
+"navigacijaStavkaDva" : "Usluge",
+"navigacijaStavkaTri" : "Kontakt",
+"naslovJedan" : "O nama",
+"naslovJedanPasusJedan" : "Dobrodošli na našu stranicu posvećenu analizi web pristupačnosti za osobe s invaliditetom.",
+"naslovDva" : "Naše usluge",
+"naslovDvaPasusJedan" : "Ovdje su naše usluge koje pružamo za analizu web pristupačnosti:",
+"naslovDvaJedan" : "Prijavi problem sa pristupačnošću",
+"formaPrijavaInputIme" : "Ime",
+"formaPrijavaInputImeGreska" : "Unijeli ste nedozvoljene  znakove. Dozvoljena su samo mala i velika slova.",
+"formaPrijavaInputemail" : "Email",
+"formaPrijavaInputurl" : "WEB site",
+"formaPrijavaInputProblem" : "Opis problema",
+"formaPrijavaInputFile" : "Dodaj file",
+"formaPrijavaInputSubmit" : "Prijavi problem",
+"uspjesnaPrijava" : "Uspješno poslata forma. Hvala na prijavi.",
+"naslovTri" : "Kontakt",
+"naslovTriPasusJedan" : "Za više informacija ili za dogovor termina za analizu, kontaktirajte nas putem:",
+"naslovOdabirJezika" : "Odabir jezika",
+"footerPasusJedan" : "&copy; 2024 Analiza Web Pristupačnosti. Sva prava pridržana."
+
 }

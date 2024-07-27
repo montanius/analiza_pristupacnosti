@@ -1,2 +1,24 @@
-{"glavniNaslov" : "Axessibility WEB site"
+{
+    "naslovDokumenta" : "Analysis of WEB accessibility",
+"glavniNaslov" : "Analysis of Web Accessibility for people with disabilities",
+"navigacijaStavkaJedan" : "About us",
+"navigacijaStavkaDva" : "Services",
+"navigacijaStavkaTri" : "Contact",
+"naslovJedan" : "About us",
+"naslovJedanPasusJedan" : "Welcome to our page dedicated to the analysis of web accessibility for people with disabilities.",
+"naslovDva" : "Our Services",
+"naslovDvaPasusJedan" : "Here are our web accessibility analysis services:",
+"naslovDvaJedan" : "Report an accessibility problem",
+"formaPrijavaInputIme" : "Name",
+"formaPrijavaInputImeGreska" : "You have entered illegal characters. Only uppercase and lowercase letters are allowed.",
+"formaPrijavaInputemail" : "E-mail",
+"formaPrijavaInputurl" : "WEB site",
+"formaPrijavaInputProblem" : "Problem Description",
+"formaPrijavaInputFile" : "Add file",
+"formaPrijavaInputSubmit" : "Report a problem",
+"uspjesnaPrijava" : "Form submitted successfully. Thanks for signing up.",
+"naslovTri" : "Contact",
+"naslovTriPasusJedan" : "For more information or to arrange an appointment for analysis, contact us via:",
+"naslovOdabirJezika" : "Language selection",
+"footerPasusJedan" : "&copy; 2024 Web Accessibility Analysis. All rights reserved."
 }

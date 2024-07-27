@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Analiza WEB pristupačnosti</title>
+    <title> Naslov dokumenta  </title>
     <style>
 .greska {
 color: red;
@@ -13,12 +13,12 @@ color: red;
     <!-- > LUKA: Moraćemo da prevedemo cijeli sajt. Luka će obezbijediti prevode, a Goran će implementirati logiku -->
     <header>
         <div class="container">
-            <h1 id="glavniNaslov" role="alert"> Analiza Web Pristupačnosti za osobe s invaliditetom </h1>
+            <h1 id="glavniNaslov" role="alert">glavniNaslov  </h1>
             <nav>
                 <ul>
-                    <li><a href="#about">O nama</a></li>
-                    <li><a href="#services">Usluge</a></li>
-                    <li><a href="#contact">Kontakt</a></li>
+                    <li><a href="#about"> <span id="navigacijaStavkaJedan"> O nama </span> </a></li>
+                    <li><a href="#services"> <span id="navigacijaStavkaDva"> Usluge </span> </a></li>
+                    <li><a href="#contact"> <span id="navigacijaStavkaTri"> Kontakt </span> </a></li>
                 </ul>
             </nav>
         </div>
@@ -27,50 +27,50 @@ color: red;
     <main>
         <section id="about">
             <div class="container">
-                <h2>O nama</h2>
-                <p>Dobrodošli na našu stranicu posvećenu analizi web pristupačnosti za osobe s invaliditetom.</p>
+                <h2 id="naslovJedan">O nama</h2>
+                <p id="naslovJedanPasusJedan">Dobrodošli na našu stranicu posvećenu analizi web pristupačnosti za osobe s invaliditetom.</p>
                 <!-- Ostatak sadržaja o "O nama" sekciji -->
             </div>
         </section>
 
         <section id="services">
             <div class="container">
-                <h2>Naše usluge</h2>
-                <p>Ovdje su naše usluge koje pružamo za analizu web pristupačnosti:</p>
+                <h2 id="naslovDva">Naše usluge</h2>
+                <p id="naslovDvaPasusJedan">Ovdje su naše usluge koje pružamo za analizu web pristupačnosti:</p>
                 <!-- Popis usluga -->
             </div>
 
-            <h3> Prijavi problem sa pristupačnošću </h3>
+            <h3 id="naslovDvaJedan"> Prijavi problem sa pristupačnošću </h3>
 <form id="formaPrijava">
-    <label for="ime"> Ime </label>
+    <label for="ime" id="formaPrijavaInputIme"> Ime </label>
     <input type="text" name="ime" id="ime" minlength="1" maxlength="100" pattern="^[a-zA-Z]+$" required><br>
-    <p class="greska" id="greskaIme" style="display: none;"> </p>
-    <label for="mail"> Email </label>
+    <p class="greska" id="formaPrijavaInputImeGreska" style="display: none;"> </p>
+    <label for="mail" id="email" > Email </label>
 <input type="email" name="mail" id="mail" required><br>
-<label for="url">  WEB site </label>
+<label for="url" id="formaPrijavaInputUrl" >  WEB site </label>
 <input type="url" name="url" id="url" required><br>
-<label for="problem"> Opis problema </label>
+<label for="problem" id="formaPrijavaInputProblem" > Opis problema </label>
 <input type="text" name="problem" id="problem" required><br>
-<label for="file"> Dodaj file </label>
+<label for="file" id="formaPrijavaInputFile" > Dodaj file </label>
 <input type="file" name="file" id="file"><br>
-<input type="submit" id="posalji" value="Prijavi problem">
+<input type="submit" id="formaPrijavaInputSubmit" value="Prijavi problem">
 </form>
 <p id="uspjesnaPrijava" style="display: none;" role="alert">  </p>
         </section>
 
         <section id="contact">
             <div class="container">
-                <h2>Kontakt</h2>
-                <p>Za više informacija ili za dogovor termina za analizu, kontaktirajte nas putem:</p>
+                <h2 id="naslovTri">Kontakt</h2>
+                <p id="naslovTriPasusJedan" >Za više informacija ili za dogovor termina za analizu, kontaktirajte nas putem:</p>
                 <!-- Kontakt informacije -->
             </div>
         </section>
 
         <div class="container">
-            <h2> Odabir jezika </h2>
+            <h2 id="naslovOdabirJezika" > Odabir jezika </h2>
                 <select id="jezik">
             <option value="crnogorski"> crnogorski </option>
-            <option value="engleski"> engleski </option>
+            <option value="english"> English  </option>
             </select>  
             </div><div></div>
         </div>
@@ -78,18 +78,18 @@ color: red;
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Analiza Web Pristupačnosti. Sva prava pridržana.</p>
+            <p id="footerPasusJedan" >&copy; 2024 Analiza Web Pristupačnosti. Sva prava pridržana.</p>
             </div>
     </footer>
 
 <script> 
+
 let inputIme = document.getElementById("ime");
-let posalji = document.getElementById("posalji");
+let formaPrijavaInputSubmit = document.getElementById("formaPrijavaInputSubmit");
 let formaPrijava = document.getElementById("formaPrijava");
 let uspjesnaPrijava = document.getElementById("uspjesnaPrijava");
-let greskaIme = document.getElementById("greskaIme");
+let formaPrijavaInputImeGreska = document.getElementById("formaPrijavaInputImeGreska");
 let jezik = document.getElementById("jezik");
-let glavniNaslov = document.getElementById("glavniNaslov");
 
 function postaviJezik(odabraniJezik){
 if(odabraniJezik === "crnogorski"){
@@ -101,50 +101,46 @@ if(odabraniJezik === "crnogorski"){
 
 
 function podesiPrevode(prevode){
-let idNizElemenataZaPrevod = ["glavniNaslov"];
-idNizElemenataZaPrevod.forEach(id => document.getElementById(id).textContent = prevode[id])
-
+    let idNizElemenataZaPrevod = ["naslovDokumenta", "glavniNaslov", "navigacijaStavkaJedan", "navigacijaStavkaDva", "navigacijaStavkaTri", "naslovJedan", "naslovJedanPasusJedan", "naslovDva", "naslovDvaPasusJedan", "naslovDvaJedan", "formaPrijavaInputIme", "formaPrijavaInputImeGreska", "formaPrijavaInputemail", "formaPrijavaInputurl", "formaPrijavaInputProblem", "formaPrijavaInputFile", "formaPrijavaInputSubmit",  "uspjesnaPrijava", "naslovTri", "naslovTriPasusJedan", "naslovOdabirJezika", "footerPasusJedan"];
+document.title = prevode["naslovDokumenta"];
+formaPrijavaInputSubmit.value = prevode["formaPrijavaInputSubmit"];
+idNizElemenataZaPrevod.forEach(id => { let element = document.getElementById(id);
+if(element){
+element.textContent = prevode[id]
+}
+});
 }
 
 
-
-
 function izmjenaJezika(){
-let odabraniJezik = jezik.value;
+    let odabraniJezik = jezik.value;
 localStorage.setItem("poslednjiOdabraniJezik", odabraniJezik);
-postaviNaslov(odabraniJezik);
+postaviJezik(odabraniJezik);
 } 
-// LUKA: window.addEventListener("load", ...) nije potreban jer je skripta na kraju HTML dokumenta
-
 let poslednjiOdabraniJezik = localStorage.getItem("poslednjiOdabraniJezik");
 if(poslednjiOdabraniJezik){
 jezik.value = poslednjiOdabraniJezik;
 }
-postaviNaslov(poslednjiOdabraniJezik);
+postaviJezik(poslednjiOdabraniJezik);
 
 jezik.addEventListener("change", izmjenaJezika);
 
-
             formaPrijava.addEventListener("submit", function(event){
                 event.preventDefault();
-                let inputImeVrijednost = inputIme.value;                
-                
-                
+                let inputImeVrijednost = inputIme.value;
 let regexIme = /^[a-zA-Z]+$/;
 if(!regexIme.test(inputImeVrijednost)){
-    greskaIme.textContent = "Unijeli ste nedozvoljene  znakove. Dozvoljena su samo mala i velika slova.";
-    greskaIme.style.display = "block";
-    greskaIme.classList.add("greska");
+        formaPrijavaInputImeGreska.style.display = "block";
+    formaPrijavaInputImeGreska.classList.add("greska");
 }
 else {
 formaPrijava.style.display = "none";
-uspjesnaPrijava.textContent = "Uspješno poslata forma. Hvala na prijavi.";
 uspjesnaPrijava.style.display = "block";
 }
  });
 
 
-    </script>
+     </script>
 
 </body>
 </html>
