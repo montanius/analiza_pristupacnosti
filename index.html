@@ -16,7 +16,14 @@ color: red;
             <h1 id="glavniNaslov" role="alert">glavniNaslov  </h1>
             <nav>
                 <ul>
-                    <li><a href="#about"> <span id="navigacijaStavkaJedan"> O nama </span> </a></li>
+<li>
+    <label for="jezik"> Odabir Jezika </label>
+                    <select id="jezik">
+                        <option value="crnogorski"> crnogorski </option>
+                        <option value="english"> English  </option>
+                        </select>  
+                    </li>                   
+                    <li><a href="#about"> <span id="navigacijaStavkaJedan"> O nama </span> </a></li>                    
                     <li><a href="#services"> <span id="navigacijaStavkaDva"> Usluge </span> </a></li>
                     <li><a href="#contact"> <span id="navigacijaStavkaTri"> Kontakt </span> </a></li>
                 </ul>
@@ -62,16 +69,16 @@ color: red;
             <div class="container">
                 <h2 id="naslovTri">Kontakt</h2>
                 <p id="naslovTriPasusJedan" >Za više informacija ili za dogovor termina za analizu, kontaktirajte nas putem:</p>
-                <!-- Kontakt informacije -->
-            </div>
+<a href="tel:+38267343537"> <spa id="telefon">  </span> </a> <br>
+<a href="mailto:info@axessibility.com"> <span id="kontaktMail"> </span> </a> <br>
+<a href="https://www.facebook.com"><spa id="kontaktFacebook"></span>  </a> <br>
+<a href="https://www.instagram.com"> <span id="kontaktInstagram"></span> </a>
+</div>
         </section>
 
         <div class="container">
-            <h2 id="naslovOdabirJezika" > Odabir jezika </h2>
-                <select id="jezik">
-            <option value="crnogorski"> crnogorski </option>
-            <option value="english"> English  </option>
-            </select>  
+            
+                 
             </div><div></div>
         </div>
             </main>
@@ -101,7 +108,7 @@ if(odabraniJezik === "crnogorski"){
 
 
 function podesiPrevode(prevode){
-    let idNizElemenataZaPrevod = ["naslovDokumenta", "glavniNaslov", "navigacijaStavkaJedan", "navigacijaStavkaDva", "navigacijaStavkaTri", "naslovJedan", "naslovJedanPasusJedan", "naslovDva", "naslovDvaPasusJedan", "naslovDvaJedan", "formaPrijavaInputIme", "formaPrijavaInputImeGreska", "formaPrijavaInputemail", "formaPrijavaInputurl", "formaPrijavaInputProblem", "formaPrijavaInputFile", "formaPrijavaInputSubmit",  "uspjesnaPrijava", "naslovTri", "naslovTriPasusJedan", "naslovOdabirJezika", "footerPasusJedan"];
+    let idNizElemenataZaPrevod = ["naslovDokumenta", "glavniNaslov", "navigacijaStavkaJedan", "navigacijaStavkaDva", "navigacijaStavkaTri", "naslovJedan", "naslovJedanPasusJedan", "naslovDva", "naslovDvaPasusJedan", "naslovDvaJedan", "formaPrijavaInputIme", "formaPrijavaInputImeGreska", "formaPrijavaInputemail", "formaPrijavaInputurl", "formaPrijavaInputProblem", "formaPrijavaInputFile", "formaPrijavaInputSubmit",  "uspjesnaPrijava", "naslovTri", "naslovTriPasusJedan", "telefon", "kontaktMail", "kontaktFacebook", "kontaktInstagram", "footerPasusJedan"];
 document.title = prevode["naslovDokumenta"];
 formaPrijavaInputSubmit.value = prevode["formaPrijavaInputSubmit"];
 idNizElemenataZaPrevod.forEach(id => { let element = document.getElementById(id);
