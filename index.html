@@ -50,14 +50,17 @@ color: red;
             <h3 id="naslovDvaJedan"> Prijavi problem sa pristupačnošću </h3>
 <form id="formaPrijava">
     <label for="ime" id="formaPrijavaInputIme"> Ime </label>
-    <input type="text" name="ime" id="ime" minlength="1" maxlength="100" pattern="^[a-zA-Z]+$" required><br>
+    <input type="text" name="ime" id="ime" ><br>
     <p class="greska" id="formaPrijavaInputImeGreska" style="display: none;"> </p>
-    <label for="mail" id="email" > Email </label>
-<input type="email" name="mail" id="mail" required><br>
+    <label for="mail" id="formaPrijavaInputEmail" > Email </label>
+<input type="text" name="mail" id="mail" ><br>
+<p class="greska" id="formaPrijavaInputEmailGreska" style="display: none;"> </p>
 <label for="url" id="formaPrijavaInputUrl" >  WEB site </label>
-<input type="url" name="url" id="url" required><br>
+<input type="text" name="url" id="url" ><br>
+<p class="greska" id="formaPrijavaInputUrlGreska" style="display: none;"> </p>
 <label for="problem" id="formaPrijavaInputProblem" > Opis problema </label>
-<input type="text" name="problem" id="problem" required><br>
+<input type="text" name="problem" id="problem" ><br>
+<p class="greska" id="formaPrijavaInputProblemGreska" style="display: none;"> </p>
 <label for="file" id="formaPrijavaInputFile" > Dodaj file </label>
 <input type="file" name="file" id="file"><br>
 <input type="submit" id="formaPrijavaInputSubmit" value="Prijavi problem">
@@ -90,30 +93,39 @@ color: red;
     </footer>
 
 <script> 
-
-let inputIme = document.getElementById("ime");
-let formaPrijavaInputSubmit = document.getElementById("formaPrijavaInputSubmit");
-let formaPrijava = document.getElementById("formaPrijava");
-let uspjesnaPrijava = document.getElementById("uspjesnaPrijava");
-let formaPrijavaInputImeGreska = document.getElementById("formaPrijavaInputImeGreska");
 let jezik = document.getElementById("jezik");
+let formaPrijava = document.getElementById("formaPrijava");
+let inputIme = document.getElementById("ime");
+let formaPrijavaInputImeGreska = document.getElementById("formaPrijavaInputImeGreska");
+let inputEmail = document.getElementById("mail");
+let formaPrijavaInputEmailGreska = document.getElementById("formaPrijavaInputEmailGreska");
+let inputUrl = document.getElementById("url");
+let formaPrijavaInputUrlGreska = document.getElementById("formaPrijavaInputUrlGreska");
+let inputProblem = document.getElementById("formaPrijavaInputProblem");
+let formaPrijavaInputProblemGreska = document.getElementById("formaPrijavaInputProblemGreska");
+let formaPrijavaInputSubmit = document.getElementById("formaPrijavaInputSubmit");
+let uspjesnaPrijava = document.getElementById("uspjesnaPrijava");
+let poruke = {};
 
 function postaviJezik(odabraniJezik){
 if(odabraniJezik === "crnogorski"){
-    fetch("cg.json").then((odgovor) => odgovor.json()) .then((prevodi) => { podesiPrevode( prevodi  ); });
+        fetch("cg.json").then((odgovor) => odgovor.json()) .then((prevodi) => { 
+            poruke = prevodi;
+            podesiPrevode(  ); });
 }else{
-    fetch("en.json").then((odgovor) => odgovor.json()) .then((prevodi) => { podesiPrevode( prevodi  ); });
+    fetch("en.json").then((odgovor) => odgovor.json()) .then((prevodi) => { 
+        poruke = prevodi;
+        podesiPrevode(); });
 }
 }
 
-
-function podesiPrevode(prevode){
-    let idNizElemenataZaPrevod = ["naslovDokumenta", "glavniNaslov", "navigacijaStavkaJedan", "navigacijaStavkaDva", "navigacijaStavkaTri", "naslovJedan", "naslovJedanPasusJedan", "naslovDva", "naslovDvaPasusJedan", "naslovDvaJedan", "formaPrijavaInputIme", "formaPrijavaInputImeGreska", "formaPrijavaInputemail", "formaPrijavaInputurl", "formaPrijavaInputProblem", "formaPrijavaInputFile", "formaPrijavaInputSubmit",  "uspjesnaPrijava", "naslovTri", "naslovTriPasusJedan", "telefon", "kontaktMail", "kontaktFacebook", "kontaktInstagram", "footerPasusJedan"];
-document.title = prevode["naslovDokumenta"];
-formaPrijavaInputSubmit.value = prevode["formaPrijavaInputSubmit"];
+function podesiPrevode(){
+    let idNizElemenataZaPrevod = ["naslovDokumenta", "glavniNaslov", "navigacijaStavkaJedan", "navigacijaStavkaDva", "navigacijaStavkaTri", "naslovJedan", "naslovJedanPasusJedan", "naslovDva", "naslovDvaPasusJedan", "naslovDvaJedan", "formaPrijavaInputIme", "formaPrijavaInputEmail", "formaPrijavaInputUrl", "formaPrijavaInputProblem", "formaPrijavaInputFile", "formaPrijavaInputSubmit",  "uspjesnaPrijava", "naslovTri", "naslovTriPasusJedan", "telefon", "kontaktMail", "kontaktFacebook", "kontaktInstagram", "footerPasusJedan"];
+document.title = poruke["naslovDokumenta"];
+formaPrijavaInputSubmit.value = poruke["formaPrijavaInputSubmit"];
 idNizElemenataZaPrevod.forEach(id => { let element = document.getElementById(id);
 if(element){
-element.textContent = prevode[id]
+element.textContent = poruke[id]
 }
 });
 }
@@ -132,25 +144,88 @@ postaviJezik(poslednjiOdabraniJezik);
 
 jezik.addEventListener("change", izmjenaJezika);
 
-function validirajIme() {
+const validirajIme = () => {
     let inputImeVrijednost = inputIme.value;
     let regexIme = /^[a-zA-Z]+$/;
-    if (!regexIme.test(inputImeVrijednost)){
-        formaPrijavaInputImeGreska.style.display = "block";
-        return false;
-    } else {
-        formaPrijavaInputImeGreska.style.display = "none";
-        return true;
-    }
+    if(!inputImeVrijednost){
+    formaPrijavaInputImeGreska.textContent = poruke["formaPrijavaInputImeObavezno"];  
+    formaPrijavaInputImeGreska.style.display = "block";
+    return false;
+}    
+else if(inputImeVrijednost.length > 100){
+formaPrijavaInputImeGreska.textContent = poruke["formaPrijavaInputImeKarakteri"];
+formaPrijavaInputImeGreska.style.display = "block";
+return false;
 }
+else if(!regexIme.test(inputImeVrijednost)){
+formaPrijavaInputImeGreska.textContent = poruke["formaPrijavaInputImeDozvoljeniZnaci"];
+formaPrijavaInputImeGreska.style.display = "block";
+return false;
+}
+else {
+        formaPrijavaInputImeGreska.style.display = "none";
+                        return true;
+}
+}    ;
+            inputIme.addEventListener("input", validirajIme);
 
+            const validirajEmail = () => {
+let inputEmailVrijednost = inputEmail.value;
+let regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if(!inputEmailVrijednost){
+formaPrijavaInputEmailGreska.textContent = poruke["formaPrijavaInputEmailObavezno"];
+formaPrijavaInputEmailGreska.style.display = "block";
+return false;
+}
+else if(!regexEmail.test(inputEmailVrijednost)){
+formaPrijavaInputEmailGreska.textContent = poruke["formaPrijavaInputEmailDozvoljeniZnaci"];
+formaPrijavaInputEmailGreska.style.display = "block";
+return false;
+}
+else{
+formaPrijavaInputEmailGreska.style.display = "none";
+return true;
+}
+            };
+inputEmail.addEventListener("input", validirajEmail);
             
+const validirajUrl = () => {
+let inputUrlVrijednost = inputUrl.value;
+let regexUrl = /^(https?:\/\/)?([^\s.$?#].[^\s]*)$/i;
+if(!inputUrlVrijednost){
+formaPrijavaInputUrlGreska.textContent = poruke["formaPrijavaInputUrlObavezno"];
+formaPrijavaInputUrlGreska.style.display = "block";
+return false;
+}
+else if(!regexUrl.test(inputUrlVrijednost)){
+formaPrijavaInputUrlGreska.textContent = poruke["formaPrijavaInputUrlDozvoljeniZnaci"];
+formaPrijavaInputUrlGreska.style.display = "block";
+return false;
+}
+else{
+formaPrijavaInputUrlGreska.style.display = "none";
+return true;
+}
+};
+inputUrl.addEventListener("input", validirajUrl);
 
-inputIme.addEventListener("input", validirajIme);
+const validirajProblem = () => {
+let inputProblemVrijednost = inputProblem.value;
+if(!inputProblemVrijednost){
+formaPrijavaInputProblemGreska.textContent = poruke["formaPrijavaInputProblemObavezno"];
+formaPrijavaInputProblemGreska.style.display = "block";
+return false;
+}
+else{
+formaPrijavaInputProblemGreska.style.display = "none";
+return true;
+}
+}
+inputProblem.addEventListener("input", validirajProblem);
 
 formaPrijava.addEventListener("submit", function(event){
     event.preventDefault();
-    if (validirajIme()) {
+    if (validirajIme()  && validirajEmail() && validirajUrl() && validirajProblem()) {
         formaPrijava.style.display = "none";
                 uspjesnaPrijava.style.display = "block";
     }
