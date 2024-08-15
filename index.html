@@ -119,15 +119,24 @@ if(odabraniJezik === "crnogorski"){
 }
 }
 
+function podesiPrevodUHtmlElement(poruke, idElementa){
+    let element = document.getElementById(idElementa);
+if(element){
+element.textContent = poruke[idElementa]
+}
+
+}
+
 function podesiPrevode(){
     let idNizElemenataZaPrevod = ["naslovDokumenta", "glavniNaslov", "navigacijaStavkaJedan", "navigacijaStavkaDva", "navigacijaStavkaTri", "naslovJedan", "naslovJedanPasusJedan", "naslovDva", "naslovDvaPasusJedan", "naslovDvaJedan", "formaPrijavaInputIme", "formaPrijavaInputEmail", "formaPrijavaInputUrl", "formaPrijavaInputProblem", "formaPrijavaInputFile", "formaPrijavaInputSubmit",  "uspjesnaPrijava", "naslovTri", "naslovTriPasusJedan", "telefon", "kontaktMail", "kontaktFacebook", "kontaktInstagram", "footerPasusJedan"];
 document.title = poruke["naslovDokumenta"];
 formaPrijavaInputSubmit.value = poruke["formaPrijavaInputSubmit"];
-idNizElemenataZaPrevod.forEach(id => { let element = document.getElementById(id);
-if(element){
-element.textContent = poruke[id]
-}
-});
+idNizElemenataZaPrevod.forEach(id => {
+    podesiPrevodUHtmlElement(poruke, id);
+    {}}
+
+
+);
 }
 
 

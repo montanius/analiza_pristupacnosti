@@ -13,7 +13,6 @@ function pomnoziSaDva(x){
 let rezultat = x * 2;
 console.log(rezultat);
     return rezultat;
-
 }
 //brojevi.forEach(pomnoziSaDva);
 
