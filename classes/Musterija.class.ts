@@ -1,21 +1,53 @@
 import { IMusterija } from "../interfaces/musterija.interface";
-import { Biblioteka } from "./biblioteka.class";
+import { Biblioteka } from "./biblioteka.class.js";
 
 export class Musterija implements IMusterija {
-    ime : string;
-    prezime : string;
-    godine : number;
-    brojIznajmljenihKnjiga : number;
-    stanjeRacuna : number;
-    iznajmljeneKnjige: number[];
+protected _ime : string;
+get ime(){
+return this._ime;
+
+ }    
+private  _prezime : string;
+get prezime(){
+    return this._prezime;
+    
+    }
+private     _godine : number;
+    get godine(){
+        return this._godine;
+    }
+          private _brojIznajmljenihKnjiga : number;
+          get brojIznajmljenihKnjiga(){
+            return this._brojIznajmljenihKnjiga;
+            
+            }
+            set brojIznajmljenihKnjiga(uvecanje: number){
+this._brojIznajmljenihKnjiga = uvecanje;
+
+            } 
+
+    private _stanjeRacuna : number;
+    get stanjeRacuna(){
+        return this._stanjeRacuna;
+        
+        }
+        set stanjeRacuna (novoStanje: number){
+            this._stanjeRacuna = novoStanje;
+            
+                        }
+    private _iznajmljeneKnjige: number[];
+    get iznajmljeneKnjige(){
+        return this._iznajmljeneKnjige;
+        
+        }
 
     constructor (musterija:IMusterija){
-this.ime = musterija.ime;
-this.prezime = musterija.prezime;
-this.godine = musterija.godine;
-this.brojIznajmljenihKnjiga = musterija.brojIznajmljenihKnjiga;
-this.stanjeRacuna = musterija.stanjeRacuna;
-this.iznajmljeneKnjige = musterija.iznajmljeneKnjige;
+this._ime = musterija.ime;
+this._prezime = musterija.prezime;
+this._godine = musterija.godine;
+this._brojIznajmljenihKnjiga = musterija.brojIznajmljenihKnjiga;
+this._stanjeRacuna = musterija.stanjeRacuna;
+this._iznajmljeneKnjige = musterija.iznajmljeneKnjige;
 }
 
 iznajmiKnjigu (biblioteka:Biblioteka, id:number){
@@ -28,10 +60,11 @@ if(knjiga && this.stanjeRacuna < knjiga.cijena){
 const knjigaIznajmljena = biblioteka.iznajmiKnjigu(id);
             
 if(knjiga && this.stanjeRacuna >= knjiga.cijena && knjigaIznajmljena){
-        this.brojIznajmljenihKnjiga += 1;
-    this.stanjeRacuna -= knjiga.cijena;
-    this.iznajmljeneKnjige.push(knjiga.id);
-    console.log("provjera: ", this.iznajmljeneKnjige);
+    this.iznajmljeneKnjige.push(knjiga.id);    
+    this.brojIznajmljenihKnjiga += 1;
+    this.stanjeRacuna = this.stanjeRacuna -  knjiga.cijena;
+        console.log("provjera: ", this.iznajmljeneKnjige);
+        console.log(this.iznajmljeneKnjige.length);
     console.log("Broj knjiga koje je", this.ime, this.prezime, " iznajmio: ",this.brojIznajmljenihKnjiga, "\n", "Preostali iznos na računu je ", this.stanjeRacuna,"€");
 }}            
 dopunaRacuna(iznos:number){

@@ -1,9 +1,9 @@
 import { IMusterija } from "./interfaces/musterija.interface";
 import { SvojstvaKnjige } from "./interfaces/svojstvaKnjige.interface";
-import { Musterija } from "./classes/Musterija.class";
-import { MusterijaSaKarticomBiblioteke } from "./classes/musterijaSaKarticomBiblioteke.class";
-import { Knjiga } from "./classes/Knjiga.class";
-import { Biblioteka } from "./classes/biblioteka.class";
+import { Musterija } from "./classes/Musterija.class.js";
+import { MusterijaSaKarticomBiblioteke } from "./classes/musterijaSaKarticomBiblioteke.class.js";
+import { Knjiga } from "./classes/Knjiga.class.js";
+import { Biblioteka } from "./classes/biblioteka.class.js";
 
 const knjiga1 = new Knjiga({
 id : 1,
@@ -13,7 +13,6 @@ godinaIzdanja : 2023,
 cijena : 10,
 kolicina : 2
 });
-knjiga1.prikaziKnjigu();
 const knjiga2 = new Knjiga({
     id : 2,
     autor : "Petar Petrović Njegoš",
@@ -23,23 +22,9 @@ const knjiga2 = new Knjiga({
     kolicina : 1
 });
 
-//const knjiga3 = new Knjiga();
 const biblioteka = new Biblioteka();
 biblioteka.dodajKnjige(knjiga1);
 biblioteka.dodajKnjige(knjiga2);
-biblioteka.prikaziKnjige();
-/*biblioteka.iznajmiKnjigu(knjiga1);
-biblioteka.vratiKnjigu(knjiga1);
-biblioteka.iznajmiKnjigu(knjiga1);
-biblioteka.iznajmiKnjigu(knjiga1);
-biblioteka.vratiKnjigu(knjiga1);
-biblioteka.vratiKnjigu(knjiga1);
-biblioteka.iznajmiKnjigu(knjiga1);
-biblioteka.iznajmiKnjigu(knjiga1);
-biblioteka.iznajmiKnjigu(knjiga1);
-biblioteka.izbaciKnjigu(knjiga1);
-biblioteka.prikaziKnjige();
-biblioteka.izbaciKnjigu(knjiga1);*/
 
 const ognjen  = new Musterija({
     ime : "Ognjen",
@@ -49,7 +34,6 @@ brojIznajmljenihKnjiga : 0,
 stanjeRacuna : 30,
 iznajmljeneKnjige: []
 }); 
-
 ognjen.iznajmiKnjigu(biblioteka, 1);
 ognjen.iznajmiKnjigu(biblioteka, 1);
 ognjen.dopunaRacuna(15);
@@ -66,8 +50,9 @@ iznajmljeneKnjige: []},
 ivana.iznajmiKnjigu(biblioteka, 2);
 ivana.vratiKnjigu(biblioteka, 2);
 ivana.iznajmiKnjigu(biblioteka, 2);
-
 ivana.vratiKnjigu(biblioteka, 2);
 ivana.iznajmiKnjigu(biblioteka, 2);
 ivana.vratiKnjigu(biblioteka, 2);
+ivana.iznajmiKnjigu(biblioteka, 2);
+ivana.dopunaRacuna(20);
 ivana.iznajmiKnjigu(biblioteka, 2);

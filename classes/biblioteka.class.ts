@@ -1,4 +1,4 @@
-import { Knjiga } from "./Knjiga.class";
+import { Knjiga } from "./Knjiga.class.js";
 
 export class Biblioteka {
 knjige : Knjiga[];

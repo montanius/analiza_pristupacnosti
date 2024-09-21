@@ -1,6 +1,6 @@
 import { SvojstvaKnjige } from "../interfaces/svojstvaKnjige.interface";
 
-export class Knjiga {
+export class Knjiga implements SvojstvaKnjige {
         id : number;
     autor : string;
         naslov : string;

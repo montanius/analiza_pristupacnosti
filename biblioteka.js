@@ -10,7 +10,6 @@ const knjiga1 = new Knjiga({
     cijena: 10,
     kolicina: 2
 });
-knjiga1.prikaziKnjigu();
 const knjiga2 = new Knjiga({
     id: 2,
     autor: "Petar Petrović Njegoš",
@@ -19,23 +18,9 @@ const knjiga2 = new Knjiga({
     cijena: 15,
     kolicina: 1
 });
-//const knjiga3 = new Knjiga();
 const biblioteka = new Biblioteka();
 biblioteka.dodajKnjige(knjiga1);
 biblioteka.dodajKnjige(knjiga2);
-biblioteka.prikaziKnjige();
-/*biblioteka.iznajmiKnjigu(knjiga1);
-biblioteka.vratiKnjigu(knjiga1);
-biblioteka.iznajmiKnjigu(knjiga1);
-biblioteka.iznajmiKnjigu(knjiga1);
-biblioteka.vratiKnjigu(knjiga1);
-biblioteka.vratiKnjigu(knjiga1);
-biblioteka.iznajmiKnjigu(knjiga1);
-biblioteka.iznajmiKnjigu(knjiga1);
-biblioteka.iznajmiKnjigu(knjiga1);
-biblioteka.izbaciKnjigu(knjiga1);
-biblioteka.prikaziKnjige();
-biblioteka.izbaciKnjigu(knjiga1);*/
 const ognjen = new Musterija({
     ime: "Ognjen",
     prezime: "Macanović",
@@ -61,4 +46,6 @@ ivana.iznajmiKnjigu(biblioteka, 2);
 ivana.vratiKnjigu(biblioteka, 2);
 ivana.iznajmiKnjigu(biblioteka, 2);
 ivana.vratiKnjigu(biblioteka, 2);
+ivana.iznajmiKnjigu(biblioteka, 2);
+ivana.dopunaRacuna(20);
 ivana.iznajmiKnjigu(biblioteka, 2);
