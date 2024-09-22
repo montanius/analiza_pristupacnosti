@@ -1,14 +1,4 @@
-var inputIme = document.getElementById("ime");
-var formaPrijavaInputImeGreska = document.getElementById("formaPrijavaInputImeGreska");
-var inputEmail = document.getElementById("mail");
-var formaPrijavaInputEmailGreska = document.getElementById("formaPrijavaInputEmailGreska");
-var inputUrl = document.getElementById("url");
-var formaPrijavaInputUrlGreska = document.getElementById("formaPrijavaInputUrlGreska");
-var inputProblem = document.getElementById("problem");
-var formaPrijavaInputProblemGreska = document.getElementById("formaPrijavaInputProblemGreska");
-var formaPrijava = document.getElementById("formaPrijava");
-var uspjesnaPrijava = document.getElementById("uspjesnaPrijava");
-var validirajIme = function () {
+var validirajIme = function (inputIme, formaPrijavaInputImeGreska, poruke) {
     var inputImeVrijednost = inputIme.value;
     var regexIme = /^[a-zA-Z]+$/;
     if (!inputImeVrijednost) {
@@ -31,8 +21,7 @@ var validirajIme = function () {
         return true;
     }
 };
-inputIme.addEventListener("input", validirajIme);
-var validirajEmail = function () {
+var validirajEmail = function (inputEmail, formaPrijavaInputEmailGreska, poruke) {
     var inputEmailVrijednost = inputEmail.value;
     var regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!inputEmailVrijednost) {
@@ -50,10 +39,9 @@ var validirajEmail = function () {
         return true;
     }
 };
-inputEmail.addEventListener("input", validirajEmail);
-var validirajUrl = function () {
+var validirajUrl = function (inputUrl, formaPrijavaInputUrlGreska, poruke) {
     var inputUrlVrijednost = inputUrl.value;
-    var regexUrl = /^(https?:\/\/)?([^\s.$?#].[^\s]*)$/i;
+    var regexUrl = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)([\/\w .-]*)*\/?$/i;
     if (!inputUrlVrijednost) {
         formaPrijavaInputUrlGreska.textContent = poruke["formaPrijavaInputUrlObavezno"];
         formaPrijavaInputUrlGreska.style.display = "block";
@@ -69,8 +57,7 @@ var validirajUrl = function () {
         return true;
     }
 };
-inputUrl.addEventListener("input", validirajUrl);
-var validirajProblem = function () {
+var validirajProblem = function (inputProblem, formaPrijavaInputProblemGreska, poruke) {
     var inputProblemVrijednost = inputProblem.value;
     if (!inputProblemVrijednost) {
         formaPrijavaInputProblemGreska.textContent = poruke["formaPrijavaInputProblemObavezno"];
@@ -82,12 +69,3 @@ var validirajProblem = function () {
         return true;
     }
 };
-inputProblem.addEventListener("input", validirajProblem);
-//&& validirajEmail() && validirajUrl() && validirajProblem()
-formaPrijava.addEventListener("submit", function (event) {
-    event.preventDefault();
-    if (validirajIme() && validirajEmail() && validirajUrl() && validirajProblem()) {
-        formaPrijava.style.display = "none";
-        uspjesnaPrijava.style.display = "block";
-    }
-});

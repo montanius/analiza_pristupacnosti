@@ -95,7 +95,30 @@ color: red;
 
     <script src="jezici.js"></script>
     <script src="validator.js"></script>
-    
-    
-</body>
+<script>
+const inputIme = document.getElementById("ime");
+const formaPrijavaInputImeGreska = document.getElementById("formaPrijavaInputImeGreska");
+const inputEmail = document.getElementById("mail");
+const formaPrijavaInputEmailGreska = document.getElementById("formaPrijavaInputEmailGreska");
+const inputUrl = document.getElementById("url");
+const formaPrijavaInputUrlGreska = document.getElementById("formaPrijavaInputUrlGreska");
+const inputProblem = document.getElementById("problem");
+const formaPrijavaInputProblemGreska = document.getElementById("formaPrijavaInputProblemGreska");
+const formaPrijava = document.getElementById("formaPrijava");
+const uspjesnaPrijava = document.getElementById("uspjesnaPrijava");
+
+inputIme.addEventListener("input", () => validirajIme(inputIme, formaPrijavaInputImeGreska, poruke));
+inputEmail.addEventListener("input", () => validirajEmail(inputEmail, formaPrijavaInputEmailGreska, poruke));
+inputUrl.addEventListener("input", () => validirajUrl(inputUrl, formaPrijavaInputUrlGreska, poruke));
+inputProblem.addEventListener("input", () => validirajProblem(inputProblem, formaPrijavaInputProblemGreska, poruke));
+
+formaPrijava.addEventListener("submit", function(event){
+    event.preventDefault();
+    if (validirajIme(inputIme, formaPrijavaInputImeGreska, poruke) && validirajEmail(inputEmail, formaPrijavaInputEmailGreska, poruke) && validirajUrl(inputUrl, formaPrijavaInputUrlGreska, poruke) && validirajProblem(inputProblem, formaPrijavaInputProblemGreska, poruke)) {
+                formaPrijava.style.display = "none";
+                uspjesnaPrijava.style.display = "block";
+    }
+});
+</script>
+    </body>
 </html>
