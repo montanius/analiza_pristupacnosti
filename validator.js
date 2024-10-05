@@ -1,71 +1,33 @@
-var validirajIme = function (inputIme, formaPrijavaInputImeGreska, poruke) {
-    var inputImeVrijednost = inputIme.value;
-    var regexIme = /^[a-zA-Z]+$/;
-    if (!inputImeVrijednost) {
-        formaPrijavaInputImeGreska.textContent = poruke["formaPrijavaInputImeObavezno"];
-        formaPrijavaInputImeGreska.style.display = "block";
-        return false;
-    }
-    else if (inputImeVrijednost.length > 100) {
-        formaPrijavaInputImeGreska.textContent = poruke["formaPrijavaInputImeKarakteri"];
-        formaPrijavaInputImeGreska.style.display = "block";
-        return false;
-    }
-    else if (!regexIme.test(inputImeVrijednost)) {
-        formaPrijavaInputImeGreska.textContent = poruke["formaPrijavaInputImeDozvoljeniZnaci"];
-        formaPrijavaInputImeGreska.style.display = "block";
+export var validirajDaNijePrazno = function (text) {
+    if (text === "") {
         return false;
     }
     else {
-        formaPrijavaInputImeGreska.style.display = "none";
         return true;
     }
 };
-var validirajEmail = function (inputEmail, formaPrijavaInputEmailGreska, poruke) {
-    var inputEmailVrijednost = inputEmail.value;
+
+export var validirajMaksimalnuDuzinu = function (text, duzinaTeksta) {
+    if (text.length > duzinaTeksta) {
+        return false;
+    }
+    else {
+        return true;
+    }
+};
+
+export var validirajIme = function (ime) {
+    var regexIme = /^[\p{L}'-]+$/u;
+    return regexIme.test(ime);
+};
+
+export var validirajEmail = function (email) {
     var regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!inputEmailVrijednost) {
-        formaPrijavaInputEmailGreska.textContent = poruke["formaPrijavaInputEmailObavezno"];
-        formaPrijavaInputEmailGreska.style.display = "block";
-        return false;
-    }
-    else if (!regexEmail.test(inputEmailVrijednost)) {
-        formaPrijavaInputEmailGreska.textContent = poruke["formaPrijavaInputEmailDozvoljeniZnaci"];
-        formaPrijavaInputEmailGreska.style.display = "block";
-        return false;
-    }
-    else {
-        formaPrijavaInputEmailGreska.style.display = "none";
-        return true;
-    }
+    return regexEmail.test(email);
 };
-var validirajUrl = function (inputUrl, formaPrijavaInputUrlGreska, poruke) {
-    var inputUrlVrijednost = inputUrl.value;
+
+export var validirajUrl = function (url) {
     var regexUrl = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)([\/\w .-]*)*\/?$/i;
-    if (!inputUrlVrijednost) {
-        formaPrijavaInputUrlGreska.textContent = poruke["formaPrijavaInputUrlObavezno"];
-        formaPrijavaInputUrlGreska.style.display = "block";
-        return false;
-    }
-    else if (!regexUrl.test(inputUrlVrijednost)) {
-        formaPrijavaInputUrlGreska.textContent = poruke["formaPrijavaInputUrlDozvoljeniZnaci"];
-        formaPrijavaInputUrlGreska.style.display = "block";
-        return false;
-    }
-    else {
-        formaPrijavaInputUrlGreska.style.display = "none";
-        return true;
-    }
+    return regexUrl.test(url);
 };
-var validirajProblem = function (inputProblem, formaPrijavaInputProblemGreska, poruke) {
-    var inputProblemVrijednost = inputProblem.value;
-    if (!inputProblemVrijednost) {
-        formaPrijavaInputProblemGreska.textContent = poruke["formaPrijavaInputProblemObavezno"];
-        formaPrijavaInputProblemGreska.style.display = "block";
-        return false;
-    }
-    else {
-        formaPrijavaInputProblemGreska.style.display = "none";
-        return true;
-    }
-};
+

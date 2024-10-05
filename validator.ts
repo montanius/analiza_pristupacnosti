@@ -1,80 +1,48 @@
-const validirajIme = (inputIme: HTMLInputElement, formaPrijavaInputImeGreska: HTMLParagraphElement, poruke:any):boolean => {
-    const inputImeVrijednost = inputIme.value;
-        const regexIme = /^[a-zA-Z]+$/;
-    if(!inputImeVrijednost){
-    formaPrijavaInputImeGreska.textContent = poruke["formaPrijavaInputImeObavezno"];  
-    formaPrijavaInputImeGreska.style.display = "block";
-    return false;
-}    
-else if(inputImeVrijednost.length > 100){
-formaPrijavaInputImeGreska.textContent = poruke["formaPrijavaInputImeKarakteri"];
-formaPrijavaInputImeGreska.style.display = "block";
-return false;
-}
-else if(!regexIme.test(inputImeVrijednost)){
-formaPrijavaInputImeGreska.textContent = poruke["formaPrijavaInputImeDozvoljeniZnaci"];
-formaPrijavaInputImeGreska.style.display = "block";
-return false;
-}
-else {
-        formaPrijavaInputImeGreska.style.display = "none";
-                        return true;
-}
-}    ;
-            
 
-
-
-const validirajEmail = (inputEmail:HTMLInputElement, formaPrijavaInputEmailGreska:HTMLParagraphElement, poruke:any):boolean => {
-const inputEmailVrijednost = inputEmail.value;
-const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-if(!inputEmailVrijednost){
-formaPrijavaInputEmailGreska.textContent = poruke["formaPrijavaInputEmailObavezno"];
-formaPrijavaInputEmailGreska.style.display = "block";
-return false;
-}
-else if(!regexEmail.test(inputEmailVrijednost)){
-formaPrijavaInputEmailGreska.textContent = poruke["formaPrijavaInputEmailDozvoljeniZnaci"];
-formaPrijavaInputEmailGreska.style.display = "block";
-return false;
-}
-else{
-formaPrijavaInputEmailGreska.style.display = "none";
-return true;
-}
-            };
-
-            
-const validirajUrl = (inputUrl:HTMLInputElement, formaPrijavaInputUrlGreska:HTMLParagraphElement, poruke:any):boolean => {
-const inputUrlVrijednost = inputUrl.value;
-const regexUrl = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)([\/\w .-]*)*\/?$/i;
-if(!inputUrlVrijednost){
-formaPrijavaInputUrlGreska.textContent = poruke["formaPrijavaInputUrlObavezno"];
-formaPrijavaInputUrlGreska.style.display = "block";
-return false;
-}
-else if(!regexUrl.test(inputUrlVrijednost)){
-formaPrijavaInputUrlGreska.textContent = poruke["formaPrijavaInputUrlDozvoljeniZnaci"];
-formaPrijavaInputUrlGreska.style.display = "block";
-return false;
-}
-else{
-formaPrijavaInputUrlGreska.style.display = "none";
-return true;
-}
+export var validirajProblem = function (inputProblem, formaPrijavaInputProblemGreska, poruke) {
+    var inputProblemVrijednost = inputProblem.value;
+    if (!inputProblemVrijednost) {
+        formaPrijavaInputProblemGreska.textContent = poruke["formaPrijavaInputProblemObavezno"];
+        formaPrijavaInputProblemGreska.style.display = "block";
+        return false;
+    }
+    else {
+        formaPrijavaInputProblemGreska.style.display = "none";
+        return true;
+    }
 };
 
-const validirajProblem = (inputProblem:HTMLInputElement, formaPrijavaInputProblemGreska:HTMLParagraphElement, poruke:any):boolean => {
-const inputProblemVrijednost = inputProblem.value;
-if(!inputProblemVrijednost){
-formaPrijavaInputProblemGreska.textContent = poruke["formaPrijavaInputProblemObavezno"];
-formaPrijavaInputProblemGreska.style.display = "block";
+
+
+export var  validirajDaNijePrazno = function(text:string){
+if(text === ""){
 return false;
 }
 else{
-formaPrijavaInputProblemGreska.style.display = "none";
 return true;
 }
 }
 
+export var validirajMaksimalnuDuzinu = function(text: string, duzinaTeksta:number){
+if(text.length > duzinaTeksta){
+return false;
+}
+else{
+return true;
+}
+}
 
+export var validirajIme = function(ime:string){
+    var regexIme = /^[\p{L}'-]+$/u;
+    return regexIme.test(ime);
+}
+
+export var validirajEmail = function (email:string) {
+    var regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regexEmail.test(email);
+};
+
+export var validirajUrl = function (url:string) {
+var regexUrl = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)([\/\w .-]*)*\/?$/i;
+return regexUrl.test(url);
+};

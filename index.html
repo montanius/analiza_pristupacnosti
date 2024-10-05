@@ -94,8 +94,11 @@ color: red;
 
 
     <script src="jezici.js"></script>
-    <script src="validator.js"></script>
-<script>
+<!--     <script src="validator.js"></script> -->
+
+<script type="module">
+import {validirajIme, validirajDaNijePrazno, validirajMaksimalnuDuzinu, validirajEmail, validirajUrl} from "./validator.js";
+
 const inputIme = document.getElementById("ime");
 const formaPrijavaInputImeGreska = document.getElementById("formaPrijavaInputImeGreska");
 const inputEmail = document.getElementById("mail");
@@ -107,15 +110,79 @@ const formaPrijavaInputProblemGreska = document.getElementById("formaPrijavaInpu
 const formaPrijava = document.getElementById("formaPrijava");
 const uspjesnaPrijava = document.getElementById("uspjesnaPrijava");
 
-inputIme.addEventListener("input", () => validirajIme(inputIme, formaPrijavaInputImeGreska, poruke));
-inputEmail.addEventListener("input", () => validirajEmail(inputEmail, formaPrijavaInputEmailGreska, poruke));
-inputUrl.addEventListener("input", () => validirajUrl(inputUrl, formaPrijavaInputUrlGreska, poruke));
-inputProblem.addEventListener("input", () => validirajProblem(inputProblem, formaPrijavaInputProblemGreska, poruke));
 
-formaPrijava.addEventListener("submit", function(event){
+inputIme.addEventListener("input", () => {
+    const dozvoljeniZnaci = validirajIme(inputIme.value);    
+    const nijePrazno = validirajDaNijePrazno(inputIme.value);    
+    const dozvoljenaDuzina = validirajMaksimalnuDuzinu(inputIme.value, 100);
+if(!nijePrazno){
+        formaPrijavaInputImeGreska.textContent = poruke.formaPrijavaInputImeObavezno;
+        formaPrijavaInputImeGreska.style.display = "block";
+    }
+    else if(!dozvoljenaDuzina){
+    formaPrijavaInputImeGreska.textContent = poruke.formaPrijavaInputImeKarakteri;
+        formaPrijavaInputImeGreska.style.display = "block";
+}
+else if(!dozvoljeniZnaci){
+    formaPrijavaInputImeGreska.textContent = poruke.formaPrijavaInputImeDozvoljeniZnaci;
+        formaPrijavaInputImeGreska.style.display = "block";
+}
+else{
+    formaPrijavaInputImeGreska.style.display = "none";
+}
+        });
+
+                  inputEmail.addEventListener("input", () => {
+                    const nijePrazno = validirajDaNijePrazno(inputEmail.value);
+                    const dozvoljeniZnaciEmail = validirajEmail(inputEmail.value);
+                    if(!nijePrazno){
+formaPrijavaInputEmailGreska.textContent = poruke.formaPrijavaInputEmailObavezno;
+formaPrijavaInputEmailGreska.style.display = "block";
+                    }
+                    else if(!dozvoljeniZnaciEmail){
+formaPrijavaInputEmailGreska.textContent = poruke.formaPrijavaInputEmailDozvoljeniZnaci;
+formaPrijavaInputEmailGreska.style.display = "block";
+                    }
+                    else{
+                        formaPrijavaInputEmailGreska.style.display = "none";
+                    }
+                  });
+
+                  inputUrl.addEventListener("input", () => {
+                    const nijePrazno = validirajDaNijePrazno(inputUrl.value);
+                    const dozvoljeniZnaci = validirajUrl(inputUrl.value);
+                    if(!nijePrazno){
+formaPrijavaInputUrlGreska.textContent = poruke.formaPrijavaInputUrlObavezno;
+formaPrijavaInputUrlGreska.style.display = "block";
+                    }
+                    else if(!dozvoljeniZnaci){
+formaPrijavaInputUrlGreska.textContent = poruke.formaPrijavaInputUrlDozvoljeniZnaci;
+formaPrijavaInputUrlGreska.style.display = "block";
+                    }
+                    else{
+                        formaPrijavaInputUrlGreska.style.display = "none";
+                    }
+                  });
+
+const validacijaInputProblem =                      inputProblem.addEventListener("input", () => {
+                        const nijePrazno = validirajDaNijePrazno(inputProblem.value);
+                        if(!nijePrazno){
+formaPrijavaInputProblemGreska.textContent = poruke.formaPrijavaInputProblemObavezno;
+formaPrijavaInputProblemGreska.style.display = "block";
+                        }
+                        else{
+                            formaPrijavaInputProblemGreska.style.display = "none";
+                                                    }
+                                            });
+
+                                                                                                                                                                                                                           formaPrijava.addEventListener("submit", function(event){
     event.preventDefault();
-    if (validirajIme(inputIme, formaPrijavaInputImeGreska, poruke) && validirajEmail(inputEmail, formaPrijavaInputEmailGreska, poruke) && validirajUrl(inputUrl, formaPrijavaInputUrlGreska, poruke) && validirajProblem(inputProblem, formaPrijavaInputProblemGreska, poruke)) {
-                formaPrijava.style.display = "none";
+    const imeValidno =  validirajDaNijePrazno(inputIme.value) && validirajMaksimalnuDuzinu(inputIme.value, 100) && validirajIme(inputIme.value);
+    const emailValidan = validirajDaNijePrazno(inputEmail.value) && validirajEmail(inputEmail.value);
+    const urlValidan = validirajDaNijePrazno(inputUrl.value) && validirajUrl(inputUrl.value);
+    const problemValidan = validirajDaNijePrazno(inputProblem.value);
+    if (imeValidno && urlValidan && problemValidan){
+                    formaPrijava.style.display = "none";
                 uspjesnaPrijava.style.display = "block";
     }
 });

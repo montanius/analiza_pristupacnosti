@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "komp" : "tsc biblioteka.ts --target ES2015"
+    "komp" : "tsc biblioteka.ts --target ES2015",
+    "komp-test" : "tsc test.ts --target ES2015"
   },
   "author": "",
   "license": "ISC",
