@@ -6,10 +6,8 @@ function postaviJezik(odabraniJezik) {
 if(!odgovor.ok){
     throw  new err("Promise nije uspjelo");
 }
-else{
-    return odgovor.json();
-}
-}).then(function (prevodi) {
+return odgovor.json();})
+.then(function (prevodi) {
             poruke = prevodi;
             podesiPrevode();
         }).catch(err => alert("Ne može se loadovati cg.json"))        ;
@@ -19,10 +17,8 @@ else{
             if(!odgovor.ok){
 throw new err("Promise nije uspjelo.");
             }
-            else{
-                return odgovor.json();
-            }
-            }).then(function (prevodi) {
+                            return odgovor.json();})
+                            .then(function (prevodi) {
             poruke = prevodi;
             podesiPrevode();
         }).catch(err => alert("Ne može se loadovati en.json"))        ;
