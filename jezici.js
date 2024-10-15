@@ -2,24 +2,40 @@ var poruke = {};
 var jezik = document.getElementById("jezik");
 function postaviJezik(odabraniJezik) {
     if (odabraniJezik === "crnogorski") {
-        fetch("cg.json").then(function (odgovor) { return odgovor.json(); }).then(function (prevodi) {
+        fetch("cg.json").then(function (odgovor) { 
+if(!odgovor.ok){
+    throw  new err("Promise nije uspjelo");
+}
+else{
+    return odgovor.json();
+}
+}).then(function (prevodi) {
             poruke = prevodi;
             podesiPrevode();
-        });
+        }).catch(err => alert("Ne može se loadovati cg.json"))        ;
     }
     else {
-        fetch("en.json").then(function (odgovor) { return odgovor.json(); }).then(function (prevodi) {
+        fetch("en.json").then(function (odgovor) { 
+            if(!odgovor.ok){
+throw new err("Promise nije uspjelo.");
+            }
+            else{
+                return odgovor.json();
+            }
+            }).then(function (prevodi) {
             poruke = prevodi;
             podesiPrevode();
-        });
+        }).catch(err => alert("Ne može se loadovati en.json"))        ;
     }
 }
+
 function podesiPrevodUHtmlElement(poruke, idElementa) {
     var element = document.getElementById(idElementa);
     if (element) {
         element.textContent = poruke[idElementa];
     }
 }
+
 function podesiPrevode() {
     var idNizElemenataZaPrevod = ["naslovDokumenta", "glavniNaslov", "navigacijaStavkaJedan", "navigacijaStavkaDva", "navigacijaStavkaTri", "naslovJedan", "naslovJedanPasusJedan", "naslovDva", "naslovDvaPasusJedan", "naslovDvaJedan", "formaPrijavaInputIme", "formaPrijavaInputEmail", "formaPrijavaInputUrl", "formaPrijavaInputProblem", "formaPrijavaInputFile", "formaPrijavaInputSubmit", "uspjesnaPrijava", "naslovTri", "naslovTriPasusJedan", "telefon", "kontaktMail", "kontaktFacebook", "kontaktInstagram", "footerPasusJedan"];
     document.title = poruke["naslovDokumenta"];
@@ -30,6 +46,7 @@ function podesiPrevode() {
         { }
     });
 }
+
 function izmjenaJezika() {
     var odabraniJezik = jezik.value;
     localStorage.setItem("poslednjiOdabraniJezik", odabraniJezik);

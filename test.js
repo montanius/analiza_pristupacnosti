@@ -1,31 +1,47 @@
 import { validirajDaNijePrazno, validirajMaksimalnuDuzinu, validirajIme, validirajEmail, validirajUrl } from "./validator.js";
 
 function testirajValidirajDaNijePrazno() {
-    var tekstovi = [
-        "neki tekst",
-        ""
-    ];
-    tekstovi.forEach((tekst) => {
-    var nijePrazno = validirajDaNijePrazno(tekst);
-    if (nijePrazno) {
-        console.log("U input Polje je upisan: " + tekst);
+    var tekstovi = {
+        "nekiTekst" :"neki tekst",
+        "prazanString" : "",
+        "razmak" : " ",
+"noviRed" :         "\n",
+        "tab" : "\t"
+    };
+for(let key in tekstovi){
+    try{
+    var nijePrazno = validirajDaNijePrazno(tekstovi[key]);
+    if (!nijePrazno) {
+        //console.log(key + " nije prošao test ");
+throw new Error(key + " nije prošao test.");
     }
-    });
 }
+catch(error){
+    console.log(error.message);
+    }
+    };
+    }console.log("Testiranje funkcije validirajDaNijePrazno");
+
+    //try{
 testirajValidirajDaNijePrazno();
+//}
+/*catch(error){
+    console.log(error.message);
+}*/
 
 function testirajValidirajMaksimalnuDuzinu(){
- var imena  = [
-    "neko ime",
-    "Ana-Maria-Johannes-Smith-O’Connor-Julio-César-González-de-la-Rosa-Fernández-Pérez-de-San-Juan-Paloma-Montenegro-Duquesa-de-Alba"
- ];
- imena.forEach((ime) => {
-var imeDozvoljenaDuzina = validirajMaksimalnuDuzinu(ime, 100);
-if(!imeDozvoljenaDuzina){
-console.log("Upisano ime:"+ ime + " ima "+ ime.length +" karaktera što je nedozvoljen broj karaktera.");
+    const brojKaraktera = {
+    "tekstOdStoKaraktera": "a".repeat(100),
+    "tekstOdStoJedanKarakter"  : "a".repeat(101)
+    }
+     for(let text in brojKaraktera){
+var textDozvoljenaDuzina = validirajMaksimalnuDuzinu(brojKaraktera[text], 100);
+if(!textDozvoljenaDuzina){
+console.log("Upisani tekst: "+ text + " ima "+ brojKaraktera[text].length +" karaktera što je nedozvoljen broj karaktera.");
 }
- });
+ };
 }
+console.log("Testiranje funkcije testirajValidirajMaksimalnuDuzinu");
 testirajValidirajMaksimalnuDuzinu();
 
 function testirajValidirajIme() {
@@ -51,6 +67,7 @@ function testirajValidirajIme() {
         }
     });
 }
+console.log("Testiranje funkcije testirajValidirajIme");
 testirajValidirajIme();
 
 function testirajValidirajEmail(){
@@ -75,6 +92,7 @@ console.log("unešeni email: " + email + "nije validan.");
 }
  });
 }
+console.log("Testiranje funkcije testirajValidirajEmail");
 testirajValidirajEmail();
 
 function testirajValidirajUrl(){
@@ -107,4 +125,5 @@ console.log("Upisana url adresa: " + url + " nije ispravna.");
 }
 });
 }
+console.log("Testiranje funkcije testirajValidirajUrl");
 testirajValidirajUrl();
